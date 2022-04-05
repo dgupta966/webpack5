@@ -4,4 +4,10 @@ const obj = {
     age :25
 };
 
+const newObj = {
+    ...obj,
+    age : 24,
+    country : "India",
+}
+
 console.log(obj);
