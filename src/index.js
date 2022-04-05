@@ -1,3 +1,5 @@
+import "./styles/index.css";
+
 const obj = {
     name : "deepak",
     city : "new delhi",

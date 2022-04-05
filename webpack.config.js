@@ -1,11 +1,23 @@
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 const path = require('path');
+
+let mode = "development";
+
+if(process.env.NODE_ENV === "production") {
+  mode = "production";
+}
 
 module.exports = {
 
-    mode: "development",
+    mode: mode,
     
     module: {
       rules: [
+        {
+          test: /\.css$/i,
+          use:[MiniCssExtractPlugin.loader, "css-loader"],
+        },
         {
           test : /\.js$/,
           exclude: /node_modules/,
@@ -16,7 +28,9 @@ module.exports = {
       ]
     },
 
-    devtool: false, // this is used for build to normal
+    plugins: [new MiniCssExtractPlugin()],
+
+    devtool: "source-map", // this is used for build to normal- setting false too but I replace this with source-map
 
     devServer : {
         static: {
